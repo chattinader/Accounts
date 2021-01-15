@@ -2,15 +2,21 @@ package com.chattinader.projects.accounts.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.validation.constraints.NotBlank;
 import java.util.UUID;
 
 public class User {
 
     private final UUID id;
+    @NotBlank
     private final String username;
+    @NotBlank
     private final String password;
+    @NotBlank
     private final String name;
+    @NotBlank
     private final int age;
+    @NotBlank
     private final char gender;
 
     public User(@JsonProperty("id") UUID id,

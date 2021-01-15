@@ -3,8 +3,10 @@ package com.chattinader.projects.accounts.api;
 import com.chattinader.projects.accounts.model.User;
 import com.chattinader.projects.accounts.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,7 +22,7 @@ public class UserController {
     }
 
     @PostMapping
-    public void addUser(@RequestBody User user) {
+    public void addUser(@Valid @NonNull @RequestBody User user) {
         userService.addUser(user);
     }
 
@@ -41,7 +43,7 @@ public class UserController {
     }
 
     @PutMapping(path = "{id}")
-    public void updateUser(@PathVariable("id") UUID id, @RequestBody User userToUpdate) {
+    public void updateUser(@PathVariable("id") UUID id, @Valid @NonNull @RequestBody User userToUpdate) {
         userService.updateUser(id, userToUpdate);
     }
 
