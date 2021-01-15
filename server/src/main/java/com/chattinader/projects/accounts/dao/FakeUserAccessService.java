@@ -17,4 +17,10 @@ public class FakeUserAccessService implements UserDao {
         DB.add(new User(id, user.getUsername(), user.getPassword(), user.getName(), user.getAge(), user.getGender()));
         return 1;
     }
+
+    @Override
+    public List<User> selectAllUsers() {
+        return DB;
+    }
+
 }

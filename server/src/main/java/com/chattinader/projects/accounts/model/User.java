@@ -10,14 +10,14 @@ public class User {
     private final String username;
     private final String password;
     private final String name;
-    private final double age;
+    private final int age;
     private final char gender;
 
     public User(@JsonProperty("id") UUID id,
                 @JsonProperty("username") String username,
                 @JsonProperty("password") String password,
                 @JsonProperty("name") String name,
-                @JsonProperty("age") double age,
+                @JsonProperty("age") int age,
                 @JsonProperty("gender") char gender) {
         this.id = id;
         this.username = username;
@@ -43,7 +43,7 @@ public class User {
         return name;
     }
 
-    public double getAge() {
+    public int getAge() {
         return age;
     }
 
