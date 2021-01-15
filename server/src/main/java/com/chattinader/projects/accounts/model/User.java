@@ -1,5 +1,7 @@
 package com.chattinader.projects.accounts.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.UUID;
 
 public class User {
@@ -11,7 +13,12 @@ public class User {
     private final double age;
     private final char gender;
 
-    public User(UUID id, String username, String password, String name, double age, char gender) {
+    public User(@JsonProperty("id") UUID id,
+                @JsonProperty("username") String username,
+                @JsonProperty("password") String password,
+                @JsonProperty("name") String name,
+                @JsonProperty("age") double age,
+                @JsonProperty("gender") char gender) {
         this.id = id;
         this.username = username;
         this.password = password;
