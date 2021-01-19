@@ -1,39 +1,44 @@
 package com.chattinader.projects.accounts.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.data.annotation.Id;
 
 import javax.validation.constraints.NotBlank;
-import java.util.UUID;
 
 public class User {
 
-    private final UUID id;
+    @Id
+    private final String id;
     @NotBlank
     private final String username;
     @NotBlank
     private final String password;
     @NotBlank
+    private final String email;
+    @NotBlank
     private final String name;
     @NotBlank
-    private final int age;
+    private final String birthDate;
     @NotBlank
     private final char gender;
 
-    public User(@JsonProperty("id") UUID id,
+    public User(@JsonProperty("id") String id,
                 @JsonProperty("username") String username,
                 @JsonProperty("password") String password,
+                @JsonProperty("email") String email,
                 @JsonProperty("name") String name,
-                @JsonProperty("age") int age,
+                @JsonProperty("birthDate") String birthDate,
                 @JsonProperty("gender") char gender) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.email = email;
         this.name = name;
-        this.age = age;
+        this.birthDate = birthDate;
         this.gender = gender;
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
@@ -45,15 +50,20 @@ public class User {
         return password;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     public String getName() {
         return name;
     }
 
-    public int getAge() {
-        return age;
+    public String getBirthDate() {
+        return birthDate;
     }
 
     public char getGender() {
         return gender;
     }
+
 }

@@ -4,23 +4,19 @@ import com.chattinader.projects.accounts.model.User;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 public interface UserDao {
 
-    int insertUser(UUID id, User user);
-
-    default int insertUser(User user) {
-        UUID id = UUID.randomUUID();
-        return insertUser(id, user);
+    default String insertUser(User user) {
+        return insertUser(user);
     }
 
     List<User> selectAllUsers();
 
-    Optional<User> selectUserById(UUID id);
+    Optional<User> selectUserById(String id);
 
-    int deleteUserById(UUID id);
+    String deleteUserById(String id);
 
-    int updateUserById(UUID id, User user);
+    String updateUserById(User user);
 
 }

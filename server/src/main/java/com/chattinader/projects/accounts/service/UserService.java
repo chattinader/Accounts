@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class UserService {
@@ -16,28 +15,31 @@ public class UserService {
     private final UserDao userDao;
 
     @Autowired
-    public UserService(@Qualifier("fakeDao") UserDao userDao) {
+    public UserService(@Qualifier("Mongo") UserDao userDao) {
         this.userDao = userDao;
     }
 
-    public int addUser(User user){
-        return userDao.insertUser(user);
+    public String addUser(User user){
+        userDao.insertUser(user);
+        return "Added user with id" + user.getId();
     }
 
     public List<User> getAllUsers() {
         return userDao.selectAllUsers();
     }
 
-    public Optional<User> getUserById(UUID id) {
+    public Optional<User> getUserById(String id) {
         return userDao.selectUserById(id);
     }
 
-    public int deleteUser(UUID id) {
-        return userDao.deleteUserById(id);
+    public String deleteUser(String id) {
+        userDao.deleteUserById(id);
+        return "Deleted user with id" + id;
     }
 
-    public int updateUser(UUID id, User newUser) {
-        return userDao.updateUserById(id, newUser);
+    public String updateUser(User newUser) {
+        userDao.updateUserById(newUser);
+        return "Updated user with id" + newUser.getId();
     }
 
 }

@@ -8,9 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.UUID;
 
-@RequestMapping("/api/v1/user")
+@RequestMapping("/api/v1")
 @RestController
 public class UserController {
 
@@ -21,30 +20,30 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping
+    @PostMapping("/addUser")
     public void addUser(@Valid @NonNull @RequestBody User user) {
         userService.addUser(user);
     }
 
-    @GetMapping
+    @GetMapping("/users")
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
-    @GetMapping(path = "{id}")
-    public User getUserById(@PathVariable("id") UUID id) {
+    @GetMapping(path = "/users/{id}")
+    public User getUserById(@PathVariable("id") String id) {
         return userService.getUserById(id)
                 .orElse(null);
     }
 
-    @DeleteMapping(path = "{id}")
-    public void deleteUserById(@PathVariable("id") UUID id) {
+    @DeleteMapping(path = "/deleteUser/{id}")
+    public void deleteUserById(@PathVariable("id") String id) {
         userService.deleteUser(id);
     }
 
-    @PutMapping(path = "{id}")
-    public void updateUser(@PathVariable("id") UUID id, @Valid @NonNull @RequestBody User userToUpdate) {
-        userService.updateUser(id, userToUpdate);
+    @PutMapping(path = "/updateUser/{id}")
+    public void updateUser(@PathVariable("id") String id, @Valid @NonNull @RequestBody User userToUpdate) {
+        userService.updateUser(userToUpdate);
     }
 
 }
